@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزوه آموزش HTML</title>
+    <link rel="icon" href="favicon.png">
+    <style>
+        body {
+            background-color: #eeeeee;
+            font-family: Tahoma;
+            margin: 30px;
+        }
+        h1 {
+            color: darkblue;
+            text-align: center;
+        }
+        h2 {
+            color: #164b85;
+        }
+        p {
+            font-size: 18px;
+            line-height: 2;
+        }
+        pre {
+            direction: ltr;
+            text-align: left;
+            font-size: 15px;
+        }
+        table {
+            width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        !function(e,t,n){
+            e.yektanetAnalyticsObject=n,
+            e[n]=e[n]||function(){e[n].q.push(arguments)},
+            e[n].q=e[n].q||[];
+            var a=t.getElementsByTagName("head")[0],
+                r=new Date,
+                c="https://cdn.yektanet.com/superscript-v2/9zyVSer6/native-nima1592.ir-46655/yn_pub.js?v="
+                    +r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),
+                s=t.createElement("link");
+            s.rel="preload",
+            s.as="script",
+            s.href=c,
+            a.appendChild(s);
+            var l=t.createElement("script");
+            l.async=!0,
+            l.src=c,
+            a.appendChild(l);
+        }(window,document,"yektanet");
+        </script>
+</head>
+<body>
+
+    <h1>جزوه آموزش HTML</h1>
+    <hr>
+
+    <h2>۱. HTML چیست؟</h2>
+    <p>
+        HTML مخفف HyperText Markup Language است.
+        از HTML برای ساختاردهی صفحات وب استفاده می‌شود.
+        با استفاده از HTML می‌توان عنوان، متن، تصویر، لینک و جدول در سایت قرار داد.
+    </p>
+
+    <h2>۲. سینتکس چیست؟</h2>
+    <p>
+        سینتکس (Syntax) به معنی قوانین نوشتن کد است.
+        هر زبان برنامه‌نویسی یا زبان نشانه‌گذاری قوانین مخصوص خودش را دارد.
+        اگر کدها را اشتباه بنویسیم ممکن است درست اجرا نشوند.
+    </p>
+    <p>&lt;h1&gt;سلام دنیا&lt;/h1&gt;</p>
+    <p>در این مثال تگ باز و بسته شده و متن داخل آن قرار گرفته است.</p>
+
+    <h2>۳. ساختار اصلی HTML</h2>
+    <p>هر صفحه HTML دارای یک ساختار اصلی است:</p>
+    <p>
+        &lt;!DOCTYPE html&gt;<br>
+        &lt;html&gt;<br>
+        &lt;head&gt;<br>
+        &lt;title&gt;My Website&lt;/title&gt;<br>
+        &lt;/head&gt;<br>
+        &lt;body&gt;<br>
+        &lt;h1&gt;سلام&lt;/h1&gt;<br>
+        &lt;/body&gt;<br>
+        &lt;/html&gt;
+    </p>
+    <ul>
+        <li>DOCTYPE نوع سند را مشخص می‌کند.</li>
+        <li>html تگ اصلی صفحه است.</li>
+        <li>head شامل اطلاعات صفحه است.</li>
+        <li>title عنوان صفحه را مشخص می‌کند.</li>
+        <li>body محتوای قابل مشاهده سایت را در خود قرار می‌دهد.</li>
+    </ul>
+
+    <h2>۴. پاراگراف و هدینگ</h2>
+    <p>
+        برای نوشتن عنوان از تگ‌های h1 تا h6 استفاده می‌کنیم.
+        h1 بزرگ‌ترین عنوان و h6 کوچک‌ترین عنوان است.
+        برای نوشتن پاراگراف نیز از تگ p استفاده می‌شود.
+    </p>
+    <p>
+        &lt;h1&gt;عنوان اصلی&lt;/h1&gt;<br>
+        &lt;h2&gt;عنوان دوم&lt;/h2&gt;<br>
+        &lt;p&gt;این یک پاراگراف است.&lt;/p&gt;
+    </p>
+
+    <h2>۵. اتریبیوت‌ها (Attributes)</h2>
+    <p>
+        اتریبیوت‌ها ویژگی‌هایی هستند که به تگ‌های HTML اضافه می‌شوند
+        و اطلاعات بیشتری درباره آن‌ها می‌دهند.
+    </p>
+    <p>&lt;img src="1.png" width="300" height="200"&gt;</p>
+    <ul>
+        <li>src مسیر تصویر را مشخص می‌کند.</li>
+        <li>width عرض را مشخص می‌کند.</li>
+        <li>height ارتفاع را مشخص می‌کند.</li>
+        <li>href آدرس لینک را مشخص می‌کند.</li>
+        <li>style برای تغییر ظاهر تگ استفاده می‌شود.</li>
+    </ul>
+
+    <h2>۶. لینک‌ها و تصاویر</h2>
+    <p>برای ساخت لینک از تگ a و برای نمایش تصویر از تگ img استفاده می‌کنیم.</p>
+    <p>
+        &lt;a href="https://www.google.com"&gt;ورود به گوگل&lt;/a&gt;<br><br>
+        &lt;img src="1.png" width="300"&gt;
+    </p>
+
+    <h2>۷. تگ‌های قالب‌بندی متن</h2>
+    <p>با این تگ‌ها می‌توان ظاهر نوشته‌ها را تغییر داد.</p>
+    <ul>
+        <li><b>b:</b> ضخیم کردن متن</li>
+        <li><strong>strong:</strong> مهم نشان دادن متن</li>
+        <li><i>i:</i> کج کردن متن</li>
+        <li><small>small:</small> کوچک کردن اندازه متن</li>
+        <li><del>del:</del> خط زدن روی متن</li>
+        <li><mark>mark:</mark> هایلایت کردن متن</li>
+        <li>br: رفتن به خط بعد</li>
+        <li>hr: ایجاد خط افقی</li>
+    </ul>
+
+    <h2>۸. فاوآیکون (Favicon)</h2>
+    <p>
+        فاوآیکون تصویر کوچکی است که کنار عنوان سایت در تب مرورگر نمایش داده می‌شود.
+        برای اضافه کردن آن از تگ link استفاده می‌کنیم.
+    </p>
+    <p>&lt;link rel="icon" href="favicon.png"&gt;</p>
+
+    <h2>۹. جدول‌ها (Table)</h2>
+    <p>
+        برای ساخت جدول از تگ table استفاده می‌کنیم.
+        tr برای ساخت سطر، th برای عنوان ستون و td برای خانه‌های جدول است.
+    </p>
+    <p>
+        &lt;table border="1"&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;نام&lt;/th&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;سن&lt;/th&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;نیما&lt;/td&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;۱۳&lt;/td&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+        &lt;/table&gt;
+    </p>
+
+    <h2>۱۰. لیست‌ها (List)</h2>
+    <p>
+        لیست‌ها برای مرتب کردن اطلاعات استفاده می‌شوند.
+        دو نوع لیست اصلی در HTML وجود دارد:
+    </p>
+    <ul>
+        <li>ul: لیست نامرتب که با نقطه نمایش داده می‌شود.</li>
+        <li>ol: لیست مرتب که با شماره نمایش داده می‌شود.</li>
+        <li>li: برای نوشتن هر مورد در لیست استفاده می‌شود.</li>
+    </ul>
+    <p>
+        &lt;ul&gt;<br>
+        &nbsp;&nbsp;&lt;li&gt;HTML&lt;/li&gt;<br>
+        &nbsp;&nbsp;&lt;li&gt;CSS&lt;/li&gt;<br>
+        &lt;/ul&gt;<br><br>
+        &lt;ol&gt;<br>
+        &nbsp;&nbsp;&lt;li&gt;مرحله اول&lt;/li&gt;<br>
+        &nbsp;&nbsp;&lt;li&gt;مرحله دوم&lt;/li&gt;<br>
+        &lt;/ol&gt;
+    </p>
+
+    <h2>۱۱. رنگ‌ها در HTML و CSS</h2>
+    <p>
+        برای تغییر رنگ نوشته و پس‌زمینه از CSS استفاده می‌کنیم.
+        رنگ‌ها را می‌توان با نام، کد HEX یا RGB مشخص کرد.
+    </p>
+    <p>
+        &lt;p style="color: red;"&gt;متن قرمز&lt;/p&gt;<br>
+        &lt;p style="color: #0000ff;"&gt;متن آبی&lt;/p&gt;<br>
+        &lt;p style="color: rgb(0,255,0);"&gt;متن سبز&lt;/p&gt;
+    </p>
+
+    <h2>۱۲. استایل‌دهی (CSS)</h2>
+    <p>
+        CSS برای زیباتر کردن صفحات وب استفاده می‌شود.
+        با CSS می‌توان رنگ، اندازه متن، فاصله، پس‌زمینه و حاشیه را تغییر داد.
+    </p>
+    <p>
+        &lt;style&gt;<br>
+        &nbsp;&nbsp;body {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;background-color: gray;<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;h1 {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;color: white;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;text-align: center;<br>
+        &nbsp;&nbsp;}<br>
+        &lt;/style&gt;
+    </p>
+
+    <h2>۱۳. چند نکته کاربردی در VS Code</h2>
+    <p>
+        در برنامه Visual Studio Code می‌توان با نوشتن html:5 و زدن کلید Enter
+        ساختار اولیه یک فایل HTML را به صورت خودکار ایجاد کرد.
+    </p>
+    <p>
+        همچنین با نوشتن lorem و زدن Enter می‌توان یک متن نمونه ایجاد کرد.
+        این متن برای پر کردن موقت صفحه و آزمایش ظاهر سایت استفاده می‌شود.
+    </p>
+
+    <h2>۱۴. ویژگی‌های مهم CSS</h2>
+    <table>
+        <tr>
+            <th>ویژگی</th>
+            <th>کاربرد</th>
+        </tr>
+        <tr>
+            <td>color</td>
+            <td>تغییر رنگ متن</td>
+        </tr>
+        <tr>
+            <td>background-color</td>
+            <td>تغییر رنگ پس‌زمینه</td>
+        </tr>
+        <tr>
+            <td>font-size</td>
+            <td>تغییر اندازه متن</td>
+        </tr>
+        <tr>
+            <td>text-align</td>
+            <td>تنظیم محل قرارگیری متن مثل center</td>
+        </tr>
+        <tr>
+            <td>direction</td>
+            <td>تعیین جهت متن مثل rtl و ltr</td>
+        </tr>
+        <tr>
+            <td>border</td>
+            <td>ایجاد حاشیه</td>
+        </tr>
+        <tr>
+            <td>margin</td>
+            <td>ایجاد فاصله بیرونی</td>
+        </tr>
+    </table>
+
+    <h2>۱۵. نکات مهم</h2>
+    <ul>
+        <li>بیشتر تگ‌های HTML دارای تگ باز و بسته هستند.</li>
+        <li>نام تگ‌ها داخل علامت‌های &lt; و &gt; نوشته می‌شود.</li>
+        <li>برای نمایش تصویر باید مسیر آن درست باشد.</li>
+        <li>برای ساخت لینک از href استفاده می‌کنیم.</li>
+        <li>برای زیباسازی سایت از CSS استفاده می‌شود.</li>
+        <li>برای راست‌چین کردن صفحه فارسی از dir="rtl" استفاده می‌کنیم.</li>
+        <li>برای وسط‌چین کردن متن از text-align: center استفاده می‌کنیم.</li>
+    </ul>
+
+    <hr>
+    <h2 style="text-align: center;">نیما کریمی</h2>
+    <div id="pos-article-display-119277"></div>
+
+</body>
+      </html>
