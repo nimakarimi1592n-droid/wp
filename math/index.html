@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ریاضی در دنیای تکنولوژی</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#070914;
+--panel:#101528;
+--panel2:#151d34;
+--cyan:#6ee7f5;
+--purple:#9b8cff;
+--pink:#ed8cff;
+--white:#f5f7ff;
+--muted:#9aa7c2;
+--line:#ffffff12;
+}
+
+*{
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+min-height:100vh;
+background:var(--bg);
+color:var(--white);
+font-family:Vazirmatn,Tahoma,sans-serif;
+overflow:hidden;
+}
+
+body:before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(ellipse at 12% 20%,#6655c72b,transparent 35%),
+radial-gradient(ellipse at 88% 75%,#00bcd42a,transparent 35%),
+radial-gradient(ellipse at 50% 100%,#8b5cf61a,transparent 45%);
+pointer-events:none;
+}
+
+body:after{
+content:"";
+position:fixed;
+inset:0;
+background-image:
+linear-gradient(#ffffff06 1px,transparent 1px),
+linear-gradient(90deg,#ffffff06 1px,transparent 1px);
+background-size:45px 45px;
+mask-image:linear-gradient(to bottom,black,transparent 90%);
+pointer-events:none;
+}
+
+.ambient{
+position:fixed;
+width:400px;
+height:400px;
+border-radius:50%;
+filter:blur(110px);
+opacity:.16;
+pointer-events:none;
+animation:float 12s ease-in-out infinite alternate;
+}
+
+.ambient.one{
+background:#7159ff;
+top:-200px;
+right:-100px;
+}
+
+.ambient.two{
+background:#00c8df;
+bottom:-230px;
+left:-100px;
+animation-delay:-5s;
+}
+
+@keyframes float{
+from{transform:translate(0,0)}
+to{transform:translate(70px,50px)}
+}
+
+.app{
+width:min(1500px,100%);
+height:100vh;
+margin:auto;
+padding:25px 35px;
+position:relative;
+z-index:1;
+display:flex;
+flex-direction:column;
+}
+
+.topbar{
+height:65px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-shrink:0;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:13px;
+}
+
+.brand-icon{
+width:43px;
+height:43px;
+display:grid;
+place-items:center;
+border-radius:14px;
+font-size:24px;
+color:#07101d;
+background:linear-gradient(135deg,var(--cyan),var(--purple));
+box-shadow:0 0 30px #6ee7f533;
+}
+
+.brand-title{
+font-size:16px;
+font-weight:800;
+letter-spacing:-.4px;
+}
+
+.brand-sub{
+font-size:10px;
+color:var(--muted);
+margin-top:3px;
+}
+
+.top-right{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.status{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:11px;
+color:#c5d0e6;
+padding:9px 14px;
+border:1px solid var(--line);
+background:#ffffff08;
+border-radius:30px;
+}
+
+.status-dot{
+width:7px;
+height:7px;
+background:#65e9b5;
+border-radius:50%;
+box-shadow:0 0 12px #65e9b5;
+}
+
+.grade{
+font-size:11px;
+padding:9px 15px;
+border-radius:30px;
+color:var(--cyan);
+border:1px solid #6ee7f52b;
+background:#6ee7f50b;
+}
+
+.main{
+flex:1;
+min-height:0;
+display:grid;
+grid-template-columns:220px minmax(0,1fr);
+gap:20px;
+padding:17px 0;
+}
+
+.sidebar{
+border:1px solid var(--line);
+background:linear-gradient(155deg,#ffffff0b,#ffffff03);
+border-radius:23px;
+padding:22px 17px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+backdrop-filter:blur(20px);
+}
+
+.side-heading{
+font-size:10px;
+color:#75829d;
+letter-spacing:1px;
+margin:0 0 18px;
+}
+
+.side-item{
+display:flex;
+align-items:center;
+gap:11px;
+padding:12px 11px;
+border-radius:13px;
+color:#a8b4ca;
+font-size:12px;
+margin-bottom:5px;
+transition:.3s;
+}
+
+.side-item.active{
+color:white;
+background:linear-gradient(100deg,#7667f12c,#6ee7f50d);
+border:1px solid #9b8cff35;
+}
+
+.side-icon{
+width:25px;
+height:25px;
+display:grid;
+place-items:center;
+border-radius:8px;
+background:#ffffff0b;
+font-size:13px;
+}
+
+.side-item.active .side-icon{
+color:var(--cyan);
+background:#6ee7f51b;
+}
+
+.side-bottom{
+border-top:1px solid var(--line);
+padding-top:18px;
+}
+
+.side-bottom p{
+font-size:11px;
+color:#8290ac;
+line-height:2;
+margin:0;
+}
+
+.side-bottom strong{
+color:#dfe8ff;
+}
+
+.content{
+min-width:0;
+position:relative;
+border:1px solid #ffffff17;
+border-radius:28px;
+background:
+linear-gradient(140deg,#141c32f5,#0b1020f5);
+box-shadow:0 25px 100px #0007,inset 0 1px #ffffff0d;
+overflow:hidden;
+}
+
+.content:before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+background:#7561ff13;
+filter:blur(90px);
+top:-310px;
+left:-160px;
+pointer-events:none;
+}
+
+.content:after{
+content:"";
+position:absolute;
+width:350px;
+height:350px;
+border-radius:50%;
+background:#00cde713;
+filter:blur(100px);
+bottom:-280px;
+right:-100px;
+pointer-events:none;
+}
+
+.slide{
+display:none;
+position:relative;
+z-index:1;
+height:100%;
+padding:clamp(28px,5vw,65px);
+flex-direction:column;
+animation:slideIn .55s cubic-bezier(.2,.8,.2,1);
+}
+
+.slide.active{
+display:flex;
+}
+
+@keyframes slideIn{
+from{
+opacity:0;
+transform:translateY(20px) scale(.99);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+.slide-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:35px;
+}
+
+.category{
+display:flex;
+align-items:center;
+gap:9px;
+font-size:11px;
+color:var(--cyan);
+background:#6ee7f50b;
+border:1px solid #6ee7f522;
+padding:9px 15px;
+border-radius:30px;
+}
+
+.category-dot{
+width:6px;
+height:6px;
+border-radius:50%;
+background:var(--cyan);
+box-shadow:0 0 12px var(--cyan);
+}
+
+.slide-index{
+font-size:12px;
+color:#71809d;
+direction:ltr;
+}
+
+.slide-index strong{
+font-size:17px;
+color:white;
+}
+
+.eyebrow{
+font-size:12px;
+font-weight:700;
+color:var(--purple);
+margin-bottom:12px;
+}
+
+h1{
+font-size:clamp(30px,4.2vw,48px);
+line-height:1.55;
+font-weight:900;
+margin:0 0 22px;
+letter-spacing:-1px;
+max-width:850px;
+}
+
+.description{
+font-size:clamp(15px,1.6vw,18px);
+line-height:2.5;
+color:#c3cde0;
+max-width:900px;
+font-weight:400;
+}
+
+.highlight{
+margin-top:30px;
+display:flex;
+align-items:center;
+gap:15px;
+padding:18px 20px;
+border:1px solid #9b8cff30;
+border-radius:17px;
+background:linear-gradient(100deg,#9b8cff12,#6ee7f509);
+max-width:850px;
+}
+
+.highlight-icon{
+width:37px;
+height:37px;
+flex-shrink:0;
+display:grid;
+place-items:center;
+border-radius:12px;
+background:#9b8cff1d;
+color:#c2b8ff;
+font-size:19px;
+}
+
+.highlight-text{
+font-size:14px;
+font-weight:700;
+line-height:2;
+color:#e7eaff;
+}
+
+.footer{
+margin-top:auto;
+padding-top:25px;
+display:flex;
+align-items:center;
+gap:10px;
+color:#7887a4;
+font-size:11px;
+}
+
+.footer-line{
+width:22px;
+height:2px;
+background:var(--cyan);
+border-radius:5px;
+}
+
+/* صفحه معرفی */
+
+.cover{
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.cover-symbol{
+width:75px;
+height:75px;
+display:grid;
+place-items:center;
+border-radius:25px;
+font-size:34px;
+color:var(--cyan);
+background:linear-gradient(145deg,#6ee7f51a,#9b8cff22);
+border:1px solid #6ee7f533;
+box-shadow:0 0 70px #6ee7f51a;
+margin-bottom:27px;
+}
+
+.cover-small{
+font-size:12px;
+letter-spacing:3px;
+color:var(--cyan);
+font-weight:700;
+margin-bottom:13px;
+}
+
+.cover-name{
+font-size:clamp(48px,9vw,105px);
+font-weight:900;
+line-height:1.5;
+margin:0;
+background:linear-gradient(110deg,#ffffff 15%,#8deaf5 50%,#b5a2ff 85%);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+filter:drop-shadow(0 10px 35px #6ee7f522);
+}
+
+.cover-divider{
+width:95px;
+height:3px;
+background:linear-gradient(90deg,var(--cyan),var(--purple));
+border-radius:5px;
+margin:23px auto;
+}
+
+.cover-caption{
+font-size:15px;
+line-height:2;
+color:#aebbd3;
+}
+
+.cover-chip{
+margin-top:27px;
+font-size:11px;
+color:#d7e4fa;
+padding:10px 20px;
+border:1px solid #ffffff1c;
+background:#ffffff08;
+border-radius:30px;
+}
+
+.cover-decoration{
+position:absolute;
+font-size:130px;
+font-weight:900;
+color:#ffffff04;
+bottom:20px;
+left:35px;
+pointer-events:none;
+}
+
+/* پایان */
+
+.end-slide{
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.end-circle{
+width:105px;
+height:105px;
+display:grid;
+place-items:center;
+border:1px solid #6ee7f544;
+border-radius:35px;
+font-size:43px;
+color:var(--cyan);
+background:linear-gradient(135deg,#6ee7f51c,#9b8cff22);
+box-shadow:0 0 80px #6ee7f522;
+margin-bottom:30px;
+}
+
+.end-title{
+font-size:clamp(55px,10vw,110px);
+font-weight:900;
+margin:0;
+background:linear-gradient(110deg,#fff,var(--cyan),var(--purple));
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.end-subtitle{
+color:#9eacc6;
+font-size:15px;
+margin-top:20px;
+}
+
+.end-decoration{
+font-size:12px;
+letter-spacing:4px;
+color:#596783;
+margin-top:38px;
+}
+
+/* کنترل‌ها */
+
+.bottom{
+height:65px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+flex-shrink:0;
+}
+
+.buttons{
+display:flex;
+align-items:center;
+gap:9px;
+}
+
+button{
+font-family:inherit;
+cursor:pointer;
+border:1px solid #ffffff1b;
+background:#ffffff08;
+color:#e8efff;
+border-radius:13px;
+padding:11px 19px;
+font-size:12px;
+font-weight:700;
+transition:.25s;
+}
+
+button:hover{
+background:#ffffff16;
+border-color:#ffffff35;
+transform:translateY(-2px);
+}
+
+button.primary{
+color:#07101c;
+border:0;
+background:linear-gradient(110deg,var(--cyan),#a9a0ff);
+box-shadow:0 7px 25px #6ee7f522;
+}
+
+button:disabled{
+opacity:.25;
+cursor:not-allowed;
+transform:none;
+}
+
+.progress-area{
+flex:1;
+max-width:420px;
+}
+
+.progress-info{
+display:flex;
+justify-content:space-between;
+font-size:10px;
+color:#8390aa;
+margin-bottom:9px;
+}
+
+.progress-track{
+height:4px;
+border-radius:10px;
+background:#ffffff12;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+width:0;
+border-radius:10px;
+background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+transition:width .5s cubic-bezier(.2,.8,.2,1);
+box-shadow:0 0 12px #6ee7f555;
+}
+
+.hint{
+font-size:10px;
+color:#66738e;
+white-space:nowrap;
+}
+
+@media(max-width:850px){
+
+.app{
+padding:14px;
+}
+
+.main{
+grid-template-columns:1fr;
+}
+
+.sidebar{
+display:none;
+}
+
+.content{
+min-height:0;
+}
+
+.slide{
+padding:30px;
+}
+
+}
+
+@media(max-width:600px){
+
+body{
+overflow:auto;
+}
+
+.app{
+height:100dvh;
+min-height:650px;
+padding:10px;
+}
+
+.topbar{
+height:55px;
+}
+
+.brand-title{
+font-size:13px;
+}
+
+.brand-sub,.status{
+display:none;
+}
+
+.grade{
+font-size:10px;
+}
+
+.main{
+padding:10px 0;
+}
+
+.content{
+border-radius:21px;
+}
+
+.slide{
+padding:24px 20px;
+}
+
+.slide-header{
+margin-bottom:28px;
+}
+
+h1{
+font-size:29px;
+}
+
+.description{
+font-size:14px;
+line-height:2.35;
+}
+
+.highlight{
+margin-top:22px;
+padding:13px;
+}
+
+.highlight-text{
+font-size:12px;
+}
+
+.bottom{
+height:auto;
+min-height:75px;
+flex-wrap:wrap;
+gap:12px;
+}
+
+.progress-area{
+order:3;
+flex-basis:100%;
+max-width:none;
+}
+
+.hint{
+display:none;
+}
+
+button{
+padding:10px 13px;
+}
+
+.cover-name{
+font-size:54px;
+}
+
+.cover-caption{
+font-size:13px;
+}
+
+}
+
+@media(max-height:720px) and (min-width:851px){
+
+.app{
+padding-top:12px;
+padding-bottom:12px;
+}
+
+.slide{
+padding:25px 45px;
+}
+
+.slide-header{
+margin-bottom:20px;
+}
+
+h1{
+font-size:35px;
+margin-bottom:12px;
+}
+
+.description{
+font-size:15px;
+line-height:2.1;
+}
+
+.highlight{
+margin-top:18px;
+padding:12px 16px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+
+<div class="app">
+
+<header class="topbar">
+
+<div class="brand">
+<div class="brand-icon">∑</div>
+<div>
+<div class="brand-title">ریاضی در دنیای تکنولوژی</div>
+<div class="brand-sub">نگاهی به دنیای محاسبات و فناوری</div>
+</div>
+</div>
+
+<div class="top-right">
+<div class="status">
+<span class="status-dot"></span>
+ارائه آماده نمایش
+</div>
+<div class="grade">پایه هشتم</div>
+</div>
+
+</header>
+
+<main class="main">
+
+<aside class="sidebar">
+
+<div>
+<p class="side-heading">فهرست ارائه</p>
+
+<div class="side-item active" id="side1">
+<span class="side-icon">✦</span>
+<span>معرفی و آغاز</span>
+</div>
+
+<div class="side-item" id="side2">
+<span class="side-icon">⌘</span>
+<span>کامپیوتر و پردازش</span>
+</div>
+
+<div class="side-item" id="side3">
+<span class="side-icon">◎</span>
+<span>شبکه و فناوری</span>
+</div>
+
+<div class="side-item" id="side4">
+<span class="side-icon">◇</span>
+<span>کاربردهای ریاضی</span>
+</div>
+
+<div class="side-item" id="side5">
+<span class="side-icon">✧</span>
+<span>پایان ارائه</span>
+</div>
+
+</div>
+
+<div class="side-bottom">
+<p>
+موضوع ارائه<br>
+<strong>ریاضی در دنیای تکنولوژی</strong>
+</p>
+<p style="margin-top:12px">
+تهیه‌کنندگان<br>
+<strong>نیما کریمی و سپهر مشهدی</strong>
+</p>
+</div>
+
+</aside>
+
+<section class="content" id="stage"></section>
+
+</main>
+
+<footer class="bottom">
+
+<div class="buttons">
+<button id="prev">→ قبلی</button>
+<button class="primary" id="next">بعدی ←</button>
+</div>
+
+<div class="progress-area">
+<div class="progress-info">
+<span id="progressText">در حال نمایش اسلاید اول</span>
+<span id="counter">01 / 23</span>
+</div>
+<div class="progress-track">
+<div class="progress-fill" id="progress"></div>
+</div>
+</div>
+
+<div class="hint">← → جابه‌جایی اسلایدها</div>
+
+</footer>
+
+</div>
+
+<script>
+
+const data=[
+
+{
+type:"cover",
+name:"نیما کریمی",
+label:"آغاز ارائه",
+caption:"ریاضی در دنیای تکنولوژی",
+small:"MATHEMATICS & TECHNOLOGY"
+},
+
+{
+title:"ریاضی؛ زبان پنهان دنیای تکنولوژی",
+body:"تقریباً هر وسیله‌ای که امروز استفاده می‌کنیم، از گوشی و کامپیوتر گرفته تا اینترنت و بازی‌های ویدیویی، به کمک ریاضی کار می‌کند. شاید هنگام استفاده از این وسایل متوجه آن نشویم، اما پشت صفحه‌ای که می‌بینیم محاسبات زیادی انجام می‌شود. در این ارائه می‌خواهیم ببینیم ریاضی چگونه به کامپیوترها کمک می‌کند اطلاعات را بفهمند، پردازش کنند و کارهای مختلفی انجام دهند.",
+highlight:"از گوشی هوشمند تا هوش مصنوعی؛ ریاضی در پشت صحنه حضور دارد.",
+presenter:"نیما کریمی",
+category:"شروع بحث"
+},
+
+{
+title:"کامپیوتر چطور با ریاضی کار می‌کند؟",
+body:"کامپیوتر اطلاعات را دریافت می‌کند، آن‌ها را پردازش می‌کند و نتیجه را نمایش می‌دهد. برای انجام این کار، اطلاعات باید به شکلی قابل فهم ذخیره شوند. درون کامپیوتر، داده‌ها به صورت عددی نمایش داده می‌شوند و پردازنده با دستورهای مشخص آن‌ها را مقایسه یا محاسبه می‌کند. حتی نمایش یک عکس ساده هم به تعداد زیادی محاسبه وابسته است.",
+highlight:"ورودی ← پردازش با محاسبات ← خروجی",
+presenter:"نیما کریمی",
+category:"کامپیوتر و پردازش"
+},
+
+{
+title:"زبان صفر و یک؛ سیستم دودویی",
+body:"ما در زندگی روزمره معمولاً از ده رقم صفر تا نه استفاده می‌کنیم؛ به این روش دستگاه ده‌دهی می‌گویند. اما کامپیوترها در سطح پایه از دو حالت استفاده می‌کنند: صفر و یک. به این روش دستگاه دودویی می‌گویند. هر رقم دودویی یک بیت نام دارد. ترکیب بیت‌ها می‌تواند عددها، متن‌ها، تصویرها و صداها را نمایش دهد. برای نمونه، عدد ده در مبنای دو به شکل 1010 نوشته می‌شود.",
+highlight:"۱۰ در مبنای ده = ۱۰۱۰ در مبنای دو",
+presenter:"نیما کریمی",
+category:"سیستم‌های عددی"
+},
+
+{
+title:"بیت، بایت و حجم اطلاعات",
+body:"کوچک‌ترین واحد رایج برای نمایش اطلاعات دیجیتال، بیت است که می‌تواند صفر یا یک باشد. هر هشت بیت، یک بایت می‌سازد. وقتی یک عکس، فیلم یا بازی را ذخیره می‌کنیم، حجم آن را معمولاً با واحدهایی مثل کیلوبایت، مگابایت و گیگابایت بیان می‌کنیم. هرچه کیفیت عکس یا مدت ویدیو بیشتر باشد، معمولاً فضای بیشتری برای ذخیره آن لازم است.",
+highlight:"۸ بیت = ۱ بایت؛ ۱۰۰۰ مگابایت تقریباً ۱ گیگابایت",
+presenter:"نیما کریمی",
+category:"حجم اطلاعات"
+},
+
+{
+title:"پردازنده؛ مغز کامپیوتر",
+body:"پردازنده یا CPU یکی از مهم‌ترین بخش‌های کامپیوتر است. این قطعه دستورهای برنامه‌ها را اجرا می‌کند و محاسبات لازم را انجام می‌دهد. برای مثال، وقتی در یک بازی حرکت می‌کنیم، کامپیوتر باید موقعیت شخصیت، فاصله از موانع و برخوردها را حساب کند. پردازنده این کارها را با سرعت بسیار بالا انجام می‌دهد.",
+highlight:"CPU دستورها را اجرا می‌کند و نتیجه محاسبات را در اختیار بخش‌های دیگر می‌گذارد.",
+presenter:"نیما کریمی",
+category:"سخت‌افزار"
+},
+
+{
+title:"برنامه‌نویسی؛ تبدیل فکر به دستور",
+body:"برنامه‌نویسی یعنی نوشتن دستورهایی که کامپیوتر بتواند آن‌ها را اجرا کند. در برنامه‌ها از مفاهیم ریاضی مانند عدد، مقایسه، ترتیب و تکرار استفاده می‌شود. مثلاً در یک بازی می‌توانیم تعیین کنیم اگر امتیاز بازیکن به صد رسید، مرحله بعد باز شود. این تصمیم با یک شرط ساده انجام می‌شود و نشان می‌دهد ریاضی چگونه به برنامه‌ها منطق می‌دهد.",
+highlight:"اگر امتیاز ≥ ۱۰۰ باشد، مرحله بعد باز شود.",
+presenter:"نیما کریمی",
+category:"برنامه‌نویسی"
+},
+
+{
+title:"الگوریتم؛ راه‌حل مرحله‌به‌مرحله",
+body:"الگوریتم مجموعه‌ای از مراحل مرتب برای حل یک مسئله است. برای مثال، وقتی می‌خواهیم بزرگ‌ترین عدد بین چند عدد را پیدا کنیم، ابتدا عدد اول را بزرگ‌ترین فرض می‌کنیم، سپس بقیه عددها را یکی‌یکی بررسی می‌کنیم و هر عدد بزرگ‌تر را جایگزین می‌کنیم. کامپیوتر هم برای کارهایی مثل مرتب‌کردن فایل‌ها یا پیدا کردن مسیر از الگوریتم استفاده می‌کند.",
+highlight:"مسئله ← مراحل مشخص ← پاسخ",
+presenter:"نیما کریمی",
+category:"حل مسئله"
+},
+
+{
+title:"گرافیک کامپیوتری؛ ریاضی در تصویر",
+body:"تصویری که روی نمایشگر می‌بینیم از تعداد زیادی نقطه کوچک به نام پیکسل تشکیل شده است. هر پیکسل رنگ و جایگاه مشخصی دارد. کامپیوتر با محاسبه موقعیت و رنگ پیکسل‌ها، تصویر را می‌سازد. در بازی‌ها و انیمیشن‌های سه‌بعدی، هندسه و مختصات کمک می‌کنند شکل‌ها در فضا قرار بگیرند و حرکت کنند.",
+highlight:"مختصات، شکل‌ها و رنگ‌ها به ساخت تصویر دیجیتال کمک می‌کنند.",
+presenter:"نیما کریمی",
+category:"گرافیک و هندسه"
+},
+
+{
+title:"اینترنت؛ شبکه‌ای از عددها",
+body:"وقتی پیامی را از طریق اینترنت می‌فرستیم، اطلاعات معمولاً به بخش‌های کوچک‌تری به نام بسته تقسیم می‌شوند. این بسته‌ها از مسیرهای مختلف شبکه عبور می‌کنند و در مقصد دوباره کنار هم قرار می‌گیرند. سرعت انتقال اطلاعات با واحدهایی مثل مگابیت بر ثانیه سنجیده می‌شود. اندازه بسته‌ها، سرعت شبکه و زمان انتقال، همگی با عدد و محاسبه ارتباط دارند.",
+highlight:"اطلاعات به بسته‌ها تقسیم می‌شود، منتقل می‌شود و در مقصد بازسازی می‌شود.",
+presenter:"نیما کریمی",
+category:"اینترنت"
+},
+
+{
+title:"امنیت دیجیتال و رمزنگاری",
+body:"وقتی وارد حساب کاربری می‌شویم یا خرید اینترنتی انجام می‌دهیم، لازم است اطلاعاتمان از دسترس افراد غیرمجاز دور بماند. رمزنگاری روشی است که اطلاعات خوانا را با کمک یک روش و کلید ریاضی به شکل دیگری تبدیل می‌کند. فقط کسی که کلید مناسب را داشته باشد می‌تواند آن را به حالت اصلی برگرداند. به همین دلیل ریاضی در امنیت پیام‌ها و اطلاعات نقش مهمی دارد.",
+highlight:"اطلاعات اصلی + کلید رمزنگاری ← متن رمز‌شده",
+presenter:"نیما کریمی",
+category:"امنیت اطلاعات"
+},
+
+{
+type:"cover",
+name:"سپهر مشهدی",
+label:"ادامه ارائه",
+caption:"از شبکه‌های هوشمند تا کاربردهای روزمره ریاضی",
+small:"MATHEMATICS & TECHNOLOGY"
+},
+
+{
+title:"شبکه و آدرس IP",
+body:"برای اینکه اطلاعات در شبکه به دستگاه درست برسد، هر دستگاه در شبکه به یک نشانی نیاز دارد. یکی از این نشانی‌ها آدرس IP است. می‌توانیم آن را مانند نشانی یک خانه در نظر بگیریم؛ با این تفاوت که برای شناسایی دستگاه‌ها در شبکه استفاده می‌شود. مودم و روتر کمک می‌کنند داده‌ها مسیر مناسب را پیدا کنند و به مقصد برسند.",
+highlight:"آدرس IP به شناسایی دستگاه‌ها در شبکه کمک می‌کند.",
+presenter:"سپهر مشهدی",
+category:"شبکه و ارتباطات"
+},
+
+{
+title:"دانلود؛ حجم فایل و سرعت اینترنت",
+body:"برای تخمین زمان دانلود، باید حجم فایل و سرعت دریافت را در نظر بگیریم. فرض کنیم حجم یک فایل صد مگابایت باشد و سرعت دانلود واقعی ده مگابایت در ثانیه باشد. در شرایط ساده، با تقسیم حجم فایل بر سرعت، زمان تقریبی به دست می‌آید: ده ثانیه. البته در دنیای واقعی سرعت اینترنت ثابت نیست و واحد مگابیت با مگابایت تفاوت دارد.",
+highlight:"زمان تقریبی دانلود = حجم فایل ÷ سرعت دانلود",
+presenter:"سپهر مشهدی",
+category:"سرعت و محاسبه"
+},
+
+{
+title:"هوش مصنوعی؛ پیدا کردن الگوها",
+body:"هوش مصنوعی در بسیاری از برنامه‌ها برای تشخیص الگوها استفاده می‌شود. برای مثال، یک سیستم می‌تواند با دیدن تعداد زیادی تصویر یاد بگیرد که گربه چه ویژگی‌هایی دارد. ریاضی و آمار به این سیستم کمک می‌کنند داده‌ها را بررسی کند، شباهت‌ها را پیدا کند و میزان خطای پیش‌بینی خود را کاهش دهد. بنابراین هوش مصنوعی فقط یک برنامه جادویی نیست؛ پشت آن داده و محاسبه وجود دارد.",
+highlight:"داده‌ها ← پیدا کردن الگو ← پیش‌بینی یا تشخیص",
+presenter:"سپهر مشهدی",
+category:"هوش مصنوعی"
+},
+
+{
+title:"رباتیک؛ ریاضی در حرکت",
+body:"ربات‌ها برای حرکت‌کردن باید محیط اطراف خود را اندازه‌گیری کنند. حسگرها می‌توانند فاصله تا مانع یا جهت حرکت را تشخیص دهند. سپس برنامه ربات با استفاده از این اطلاعات تصمیم می‌گیرد موتور را چقدر بچرخاند یا چه زمانی متوقف شود. زاویه‌ها، فاصله‌ها و زمان در کنترل حرکت ربات نقش مهمی دارند.",
+highlight:"اندازه‌گیری فاصله و زاویه، به ربات کمک می‌کند مسیرش را انتخاب کند.",
+presenter:"سپهر مشهدی",
+category:"رباتیک"
+},
+
+{
+title:"الکترونیک؛ عددها در مدار",
+body:"قطعات الکترونیکی با جریان و ولتاژ کار می‌کنند. یکی از رابطه‌های معروف در مدارهای ساده، قانون اهم است که ارتباط ولتاژ، جریان و مقاومت را نشان می‌دهد. با دانستن دو مقدار می‌توان مقدار سوم را محاسبه کرد. این رابطه در طراحی و بررسی مدارها کاربرد دارد و به مهندسان کمک می‌کند قطعات مناسب را انتخاب کنند.",
+highlight:"قانون اهم: ولتاژ = جریان × مقاومت  (V = I × R)",
+presenter:"سپهر مشهدی",
+category:"الکترونیک"
+},
+
+{
+title:"بازی‌های ویدیویی؛ هندسه و فیزیک",
+body:"در بازی‌های ویدیویی، موقعیت شخصیت‌ها و اشیا با مختصات مشخص می‌شود. بازی باید فاصله میان دو جسم را حساب کند تا بفهمد آیا با هم برخورد کرده‌اند یا نه. برای حرکت واقع‌گرایانه نیز از مفاهیمی مانند سرعت، شتاب، زاویه و مسیر استفاده می‌شود. حتی نور و سایه در بازی‌ها با محاسبات پیچیده ساخته می‌شوند.",
+highlight:"مختصات + فاصله + سرعت = بخشی از دنیای واقعی بازی",
+presenter:"سپهر مشهدی",
+category:"بازی‌های رایانه‌ای"
+},
+
+{
+title:"GPS و نقشه‌های دیجیتال",
+body:"GPS با دریافت سیگنال از ماهواره‌ها به تعیین موقعیت کمک می‌کند. برنامه‌های نقشه با استفاده از موقعیت، فاصله مسیرها و اطلاعات ترافیک می‌توانند مسیرهای مختلف را مقایسه کنند. سپس زمان تقریبی رسیدن را تخمین می‌زنند. پس وقتی یک مسیر کوتاه‌تر یا خلوت‌تر پیشنهاد می‌شود، پشت این پیشنهاد اندازه‌گیری و محاسبه وجود دارد.",
+highlight:"موقعیت + فاصله + شرایط مسیر ← تخمین زمان رسیدن",
+presenter:"سپهر مشهدی",
+category:"مسیریابی"
+},
+
+{
+title:"شغل‌های آینده در دنیای تکنولوژی",
+body:"بسیاری از شغل‌های امروزی و آینده با ریاضی و فناوری ارتباط دارند. برنامه‌نویس‌ها نرم‌افزار می‌سازند، مهندسان کامپیوتر سخت‌افزار و سیستم‌ها را طراحی می‌کنند، متخصصان شبکه ارتباط دستگاه‌ها را برقرار می‌کنند و پژوهشگران هوش مصنوعی روی تحلیل داده کار می‌کنند. حتی طراحی بازی و ساخت انیمیشن هم به منطق، هندسه و محاسبات نیاز دارد.",
+highlight:"برنامه‌نویسی، شبکه، هوش مصنوعی، رباتیک و طراحی بازی",
+presenter:"سپهر مشهدی",
+category:"آینده فناوری"
+},
+
+{
+title:"ریاضی در زندگی روزمره",
+body:"ریاضی فقط در کامپیوتر و آزمایشگاه نیست؛ هر روز از آن استفاده می‌کنیم. هنگام خرید، درصد تخفیف و قیمت نهایی را حساب می‌کنیم. هنگام آشپزی، مقدار مواد را اندازه می‌گیریم. برای رسیدن به مدرسه زمان و فاصله را در نظر می‌گیریم و در ورزش، امتیازها و زمان بازی را می‌سنجیم. این محاسبات کمک می‌کنند تصمیم‌های دقیق‌تری بگیریم.",
+highlight:"تخفیف، اندازه‌گیری، زمان، فاصله و بودجه همگی کاربرد ریاضی‌اند.",
+presenter:"سپهر مشهدی",
+category:"زندگی روزمره"
+},
+
+{
+title:"جمع‌بندی؛ ریاضی، ابزار فهم دنیای امروز",
+body:"در این ارائه دیدیم که ریاضی در بخش‌های مختلف فناوری حضور دارد: از صفر و یک و پردازنده گرفته تا برنامه‌نویسی، اینترنت، امنیت، هوش مصنوعی و رباتیک. همچنین فهمیدیم که ریاضی در خرید، آشپزی، ورزش و برنامه‌ریزی روزانه هم به ما کمک می‌کند. لازم نیست همه ما ریاضی‌دان شویم؛ اما یادگیری ریاضی باعث می‌شود فناوری اطرافمان را بهتر بفهمیم و بتوانیم در آینده چیزهای تازه‌ای بسازیم.",
+highlight:"ریاضی فقط یک درس نیست؛ ابزاری برای فهمیدن و ساختن دنیاست.",
+presenter:"سپهر مشهدی",
+category:"جمع‌بندی"
+},
+
+{
+type:"end"
+}
+
+];
+
+const stage=document.getElementById("stage");
+
+data.forEach((item,index)=>{
+
+const slide=document.createElement("article");
+slide.className="slide";
+
+if(item.type==="cover"){
+
+slide.classList.add("cover");
+
+slide.innerHTML=`
+<div class="cover-symbol">∑</div>
+<div class="cover-small">${item.small}</div>
+<h1 class="cover-name">${item.name}</h1>
+<div class="cover-divider"></div>
+<div class="cover-caption">${item.label} · ${item.caption}</div>
+<div class="cover-chip">ریاضی در دنیای تکنولوژی | پایه هشتم</div>
+<div class="cover-decoration">08</div>
+`;
+
+}else if(item.type==="end"){
+
+slide.classList.add("end-slide");
+
+slide.innerHTML=`
+<div class="end-circle">✦</div>
+<h1 class="end-title">پایان</h1>
+<div class="end-subtitle">از توجه شما سپاسگزاریم</div>
+<div class="end-decoration">MATHEMATICS · TECHNOLOGY · FUTURE</div>
+`;
+
+}else{
+
+slide.innerHTML=`
+<div class="slide-header">
+<div class="category">
+<span class="category-dot"></span>
+${item.category}
+</div>
+<div class="slide-index">
+<strong>${String(index+1).padStart(2,"0")}</strong> / 23
+</div>
+</div>
+
+<div class="eyebrow">ریاضی در دنیای تکنولوژی</div>
+
+<h1>${item.title}</h1>
+
+<div class="description">${item.body}</div>
+
+<div class="highlight">
+<div class="highlight-icon">✦</div>
+<div class="highlight-text">${item.highlight}</div>
+</div>
+
+<div class="footer">
+<div class="footer-line"></div>
+ارائه‌دهنده: ${item.presenter}
+</div>
+`;
+
+}
+
+stage.appendChild(slide);
+
+});
+
+const slides=[...document.querySelectorAll(".slide")];
+
+let current=0;
+
+const prev=document.getElementById("prev");
+const next=document.getElementById("next");
+const progress=document.getElementById("progress");
+const counter=document.getElementById("counter");
+const progressText=document.getElementById("progressText");
+
+function updateSidebar(){
+
+const items=[
+document.getElementById("side1"),
+document.getElementById("side2"),
+document.getElementById("side3"),
+document.getElementById("side4"),
+document.getElementById("side5")
+];
+
+let active=0;
+
+if(current===0)active=0;
+else if(current<=10)active=1;
+else if(current<=17)active=2;
+else if(current<=21)active=3;
+else active=4;
+
+items.forEach((item,index)=>{
+item.classList.toggle("active",index===active);
+});
+
+}
+
+function show(number){
+
+current=Math.max(0,Math.min(slides.length-1,number));
+
+slides.forEach((slide,index)=>{
+slide.classList.toggle("active",index===current);
+});
+
+prev.disabled=current===0;
+next.disabled=current===slides.length-1;
+
+progress.style.width=((current+1)/slides.length*100)+"%";
+
+counter.textContent=
+String(current+1).padStart(2,"0")+" / 23";
+
+progressText.textContent=
+current===22?"پایان ارائه":
+"در حال نمایش اسلاید "+(current+1);
+
+updateSidebar();
+
+}
+
+prev.addEventListener("click",()=>{
+show(current-1);
+});
+
+next.addEventListener("click",()=>{
+show(current+1);
+});
+
+document.addEventListener("keydown",event=>{
+
+if(["ArrowLeft","PageDown"," "].includes(event.key)){
+event.preventDefault();
+show(current+1);
+}
+
+if(["ArrowRight","PageUp"].includes(event.key)){
+event.preventDefault();
+show(current-1);
+}
+
+if(event.key==="Home")show(0);
+if(event.key==="End")show(22);
+
+});
+
+let touchStart=0;
+
+stage.addEventListener("touchstart",event=>{
+touchStart=event.changedTouches[0].screenX;
+},{passive:true});
+
+stage.addEventListener("touchend",event=>{
+
+const difference=event.changedTouches[0].screenX-touchStart;
+
+if(Math.abs(difference)>60){
+show(current+(difference<0?1:-1));
+}
+
+},{passive:true});
+
+show(0);
+
+</script>
+
+</body>
+</html>
